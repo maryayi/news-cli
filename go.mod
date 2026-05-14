@@ -1,4 +1,4 @@
-module github.com/mahdiaryayi/news-cli
+module github.com/maryayi/news-cli
 
 go 1.22.6
 

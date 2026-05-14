@@ -21,21 +21,23 @@ A fast command-line tool to fetch top news headlines, powered by [NewsAPI.org](h
 ### Build from source
 
 ```bash
-git clone https://github.com/mahdiaryayi/news-cli.git
+git clone https://github.com/maryayi/news-cli.git
 cd news-cli
-go build -o news .
+go build -o $(go env GOPATH)/bin/news .
 ```
 
-Optionally move the binary to your PATH:
+This builds the binary directly into your Go bin directory so `news` is available globally.
+
+Make sure `$(go env GOPATH)/bin` is in your `PATH`:
 
 ```bash
-mv news /usr/local/bin/news
+export PATH="$PATH:$(go env GOPATH)/bin"
 ```
 
-### Install with go install
+Verify with:
 
 ```bash
-go install github.com/mahdiaryayi/news-cli@latest
+news --version
 ```
 
 ## Setup

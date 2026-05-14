@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/joho/godotenv"
-	"github.com/mahdiaryayi/news-cli/cmd"
+	"github.com/maryayi/news-cli/cmd"
 )
 
 func main() {

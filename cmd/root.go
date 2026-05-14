@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/mahdiaryayi/news-cli/internal/news"
+	"github.com/maryayi/news-cli/internal/news"
 	"github.com/spf13/cobra"
 )
 
