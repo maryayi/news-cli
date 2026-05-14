@@ -40,7 +40,8 @@ var rootCmd = &cobra.Command{
 				source = "Unknown"
 			}
 			title := strings.TrimSpace(a.Title)
-			fmt.Printf("%d. [%s] %s\n   %s\n\n", i+1, source, title, a.URL)
+			link := fmt.Sprintf("\033[34m\033]8;;%s\033\\%s\033]8;;\033\\\033[0m", a.URL, source)
+			fmt.Printf("%d. %s — %s\n\n", i+1, title, link)
 		}
 
 		return nil
