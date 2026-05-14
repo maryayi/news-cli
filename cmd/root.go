@@ -12,9 +12,10 @@ import (
 var count int
 
 var rootCmd = &cobra.Command{
-	Use:   "news [keyword]",
-	Short: "Fetch top news headlines for a keyword",
-	Long:  `news fetches the latest news headlines for a given keyword using NewsAPI.org.`,
+	Use:     "news [keyword]",
+	Short:   "Fetch top news headlines for a keyword",
+	Long:    `news fetches the latest news headlines for a given keyword using NewsAPI.org.`,
+	Version: "0.1.0",
 	Args:  cobra.MaximumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		apiKey := os.Getenv("NEWS_API_KEY")

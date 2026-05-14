@@ -72,6 +72,7 @@ The keyword is optional. Omitting it returns the current top headlines from arou
 | Flag | Short | Default | Description |
 |------|-------|---------|-------------|
 | `--count` | `-n` | `5` | Number of headlines to fetch |
+| `--version` | `-v` | — | Print version |
 | `--help` | `-h` | — | Show help |
 
 ### Examples
