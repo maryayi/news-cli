@@ -5,9 +5,10 @@ A fast command-line tool to fetch top news headlines for any keyword, powered by
 ## Features
 
 - Search headlines by any keyword
+- Clickable source links in supported terminals
 - Configure the number of results with `-n`
 - Results sorted by most recent publication date
-- Clean, readable terminal output
+- API key loaded automatically from a `.env` file
 
 ## Requirements
 
@@ -84,37 +85,47 @@ Fetch 10 headlines about bitcoin:
 news -n 10 bitcoin
 ```
 
-Fetch 1 headline about climate:
+Fetch 3 headlines about climate change (multi-word keyword):
 
 ```bash
-news -n 1 "climate change"
+news -n 3 "climate change"
 ```
 
 ### Sample output
 
 ```
-Top 5 headlines for "china":
+Top 5 headlines for "bitcoin":
 
-1. [Reuters] China vows retaliation after new US tariffs take effect
-   https://reuters.com/...
-
-2. [BBC News] China's economy grows faster than expected in Q1
-   https://bbc.com/...
-
-3. [Bloomberg] China tech stocks rally on stimulus hopes
-   https://bloomberg.com/...
-
-4. [AP News] China and Taiwan tensions rise over military drills
-   https://apnews.com/...
-
-5. [The Guardian] China pledges to hit net-zero emissions by 2060
-   https://theguardian.com/...
+1. Bitcoin back above $81,000 after hot CPI print — CoinDesk
+2. Strait of Hormuz closure boosts Bitcoin, silver appeal — Crypto Briefing
+3. Donald Trump to visit China with 16 CEOs — Crypto Briefing
+4. Iran war, AI spending could push Bitcoin back to $126K — Cointelegraph
+5. XRP Price Finds Support Again — newsBTC
 ```
+
+Source names at the end of each line are clickable hyperlinks in terminals that support OSC 8 (iTerm2, GNOME Terminal, Windows Terminal, Kitty, and most modern terminals).
 
 ## API Limits
 
 The free tier of NewsAPI.org allows **100 requests per day**. For higher limits, see [NewsAPI.org pricing](https://newsapi.org/pricing).
 
+> **Note:** NewsAPI.org free tier only returns articles from the last month and restricts sources for non-paying users. Upgrade to a paid plan for real-time results.
+
+## Dependencies
+
+| Package | Purpose |
+|---------|---------|
+| [spf13/cobra](https://github.com/spf13/cobra) | CLI framework |
+| [joho/godotenv](https://github.com/joho/godotenv) | `.env` file loading |
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/my-feature`
+3. Commit your changes: `git commit -m 'Add my feature'`
+4. Push to the branch: `git push origin feature/my-feature`
+5. Open a pull request
+
 ## License
 
-MIT
+Copyright (c) 2026 Mahdi Aryayi — released under the [MIT License](./LICENSE).
