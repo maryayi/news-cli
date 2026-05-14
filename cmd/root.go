@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"html"
 	"os"
 	"strings"
 
@@ -15,7 +16,7 @@ var rootCmd = &cobra.Command{
 	Use:     "news [keyword]",
 	Short:   "Fetch top news headlines for a keyword",
 	Long:    `news fetches the latest news headlines for a given keyword using NewsAPI.org.`,
-	Version: "0.2.0",
+	Version: "0.2.1",
 	Args:  cobra.MaximumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		apiKey := os.Getenv("NEWS_API_KEY")
@@ -53,8 +54,8 @@ var rootCmd = &cobra.Command{
 				source = "Unknown"
 			}
 			title := strings.TrimSpace(a.Title)
-			link := fmt.Sprintf("\033[34m\033]8;;%s\033\\%s\033]8;;\033\\\033[0m", a.URL, source)
-			fmt.Printf("%d. %s — %s\n\n", i+1, title, link)
+			url := html.UnescapeString(a.URL)
+			fmt.Printf("%d. %s\n   \033[34m%s\033[0m  \033[2m%s\033[0m\n\n", i+1, title, source, url)
 		}
 
 		return nil
