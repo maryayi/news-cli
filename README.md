@@ -1,11 +1,12 @@
 # news-cli
 
-A fast command-line tool to fetch top news headlines for any keyword, powered by [NewsAPI.org](https://newsapi.org).
+A fast command-line tool to fetch top news headlines, powered by [NewsAPI.org](https://newsapi.org). Run it with a keyword to search, or with no arguments to get the latest top headlines from around the world.
 
 ## Features
 
+- General world headlines with no keyword required
 - Search headlines by any keyword
-- Clickable source links in supported terminals
+- Clickable, blue-colored source links in supported terminals
 - Configure the number of results with `-n`
 - Results sorted by most recent publication date
 - API key loaded automatically from a `.env` file
@@ -64,6 +65,8 @@ To persist it across sessions, add the line above to your `~/.bashrc`, `~/.zshrc
 news [keyword] [flags]
 ```
 
+The keyword is optional. Omitting it returns the current top headlines from around the world.
+
 ### Flags
 
 | Flag | Short | Default | Description |
@@ -73,7 +76,13 @@ news [keyword] [flags]
 
 ### Examples
 
-Fetch 5 headlines about China (default):
+Fetch top world headlines (no keyword):
+
+```bash
+news
+```
+
+Fetch 5 headlines about China:
 
 ```bash
 news china
@@ -91,7 +100,27 @@ Fetch 3 headlines about climate change (multi-word keyword):
 news -n 3 "climate change"
 ```
 
+Fetch 10 general world headlines:
+
+```bash
+news -n 10
+```
+
 ### Sample output
+
+Without a keyword:
+
+```
+Top 5 headlines around the world:
+
+1. Nvidia says CEO Jensen Huang is joining Trump's China trip — CNBC
+2. Amid war, Trump says he doesn't 'think about Americans' financial situation' — The Washington Post
+3. Memphis Grizzlies forward Brandon Clarke dies at 29 — Associated Press
+4. Fed holds rates steady amid economic uncertainty — Reuters
+5. Scientists discover new deep-sea species off Pacific coast — BBC News
+```
+
+With a keyword:
 
 ```
 Top 5 headlines for "bitcoin":
@@ -103,7 +132,7 @@ Top 5 headlines for "bitcoin":
 5. XRP Price Finds Support Again — newsBTC
 ```
 
-Source names at the end of each line are clickable hyperlinks in terminals that support OSC 8 (iTerm2, GNOME Terminal, Windows Terminal, Kitty, and most modern terminals).
+Source names are rendered in blue and are clickable hyperlinks in terminals that support OSC 8 (iTerm2, GNOME Terminal, Windows Terminal, Kitty, and most modern terminals).
 
 ## API Limits
 

@@ -7,17 +7,27 @@ import (
 	"net/url"
 )
 
-const baseURL = "https://newsapi.org/v2/everything"
+const (
+	everythingURL  = "https://newsapi.org/v2/everything"
+	topHeadlineURL = "https://newsapi.org/v2/top-headlines"
+)
 
 func FetchHeadlines(apiKey, keyword string, count int) ([]Article, error) {
 	params := url.Values{}
-	params.Set("q", keyword)
 	params.Set("pageSize", fmt.Sprintf("%d", count))
-	params.Set("sortBy", "publishedAt")
 	params.Set("language", "en")
 	params.Set("apiKey", apiKey)
 
-	resp, err := http.Get(baseURL + "?" + params.Encode())
+	var endpoint string
+	if keyword == "" {
+		endpoint = topHeadlineURL
+	} else {
+		endpoint = everythingURL
+		params.Set("q", keyword)
+		params.Set("sortBy", "publishedAt")
+	}
+
+	resp, err := http.Get(endpoint + "?" + params.Encode())
 	if err != nil {
 		return nil, fmt.Errorf("request failed: %w", err)
 	}

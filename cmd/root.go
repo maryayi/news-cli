@@ -15,25 +15,37 @@ var rootCmd = &cobra.Command{
 	Use:   "news [keyword]",
 	Short: "Fetch top news headlines for a keyword",
 	Long:  `news fetches the latest news headlines for a given keyword using NewsAPI.org.`,
-	Args:  cobra.ExactArgs(1),
+	Args:  cobra.MaximumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		apiKey := os.Getenv("NEWS_API_KEY")
 		if apiKey == "" {
 			return fmt.Errorf("NEWS_API_KEY environment variable is not set.\nGet a free API key at https://newsapi.org/register")
 		}
 
-		keyword := args[0]
+		var keyword string
+		if len(args) > 0 {
+			keyword = args[0]
+		}
+
 		articles, err := news.FetchHeadlines(apiKey, keyword, count)
 		if err != nil {
 			return err
 		}
 
 		if len(articles) == 0 {
-			fmt.Printf("No headlines found for %q.\n", keyword)
+			if keyword == "" {
+				fmt.Println("No headlines found.")
+			} else {
+				fmt.Printf("No headlines found for %q.\n", keyword)
+			}
 			return nil
 		}
 
-		fmt.Printf("Top %d headlines for \"%s\":\n\n", len(articles), keyword)
+		if keyword == "" {
+			fmt.Printf("Top %d headlines around the world:\n\n", len(articles))
+		} else {
+			fmt.Printf("Top %d headlines for \"%s\":\n\n", len(articles), keyword)
+		}
 		for i, a := range articles {
 			source := a.Source.Name
 			if source == "" {
